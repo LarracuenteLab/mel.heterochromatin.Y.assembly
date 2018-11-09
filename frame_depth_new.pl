@@ -4,7 +4,7 @@ use strict;
 # 
 # Author: Ching-Ho Chang
 # for Chang and Larracuente 2018. Heterochromatin-enriched assemblies reveal the sequence and organization of the Drosophila melanogaster Y chromosome
-# calculate sum of depth, average and median F/M for each 100kb window
+# calculate sum of depth, average and median F/M for each 10kb window
 #
 my $i=0;
 my $sum =0;
@@ -50,13 +50,13 @@ while(my $line=<input_file>){
 	$i++;
 	
 	null:
-	if((($linearray[1] >=100000*($j+1)  || $linearray[0] ne $name) && $start !=1 )){
+	if((($linearray[1] >=10000*($j+1)  || $linearray[0] ne $name) && $start !=1 )){
 		$med=median(@ratio);
 		$med= 'NA' if ($i==0);
 		@ratio=0;
 		$ave=$sum/($sum2+1);
-		$base=$j*100000+50000;
-		#Output the average and median of Female/Male read coverage for each 100kb window
+		$base=$j*10000+5000;
+		#Output the average and median of Female/Male read coverage for each 10kb window
 		print OUT "$name\t$base\t$i\t$sum\t$sum2\t$ave\t$med\n";
 		$j++;
 		$i=0;
